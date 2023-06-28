@@ -8,7 +8,7 @@ namespace OrleansExample2.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IProductOperations, ProductOperations>();
-            services.AddControllers();
+            services.AddControllers(options => options.EnableEndpointRouting = false);
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddApplicationInsights("Silo");
@@ -30,6 +30,8 @@ namespace OrleansExample2.Api
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.UseRouting();
+
+            app.UseMvc();
         }
     }
 }
