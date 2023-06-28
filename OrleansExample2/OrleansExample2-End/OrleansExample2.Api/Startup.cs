@@ -16,10 +16,11 @@ namespace OrleansExample2.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
                 app.Map("/dashboard", x => x.UseOrleansDashboard());
             }
             else
