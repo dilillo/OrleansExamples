@@ -22,7 +22,7 @@ jobs:
         dotnet-version: 7.0.x
 
     - name: .NET publish products api
-      run: dotnet publish ./**/OrleansExample2.Api.csproj --configuration Release
+      run: dotnet publish ./OrleansExample2/OrleansExample2-End/OrleansExample2.Api/OrleansExample2.Api.csproj --configuration Release
 
     - name: Login to Azure
       uses: azure/login@v1
