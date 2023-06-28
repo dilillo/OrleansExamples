@@ -6,9 +6,9 @@ on:
     - main
 
 env:
-  UNIQUE_APP_NAME: ddproductsapi1
-  AZURE_RESOURCE_GROUP_NAME: orleans-resourcegroup
-  AZURE_RESOURCE_GROUP_LOCATION: centralus
+  UNIQUE_APP_NAME: ddorleansexample2
+  AZURE_RESOURCE_GROUP_NAME: ddorleansexample2-rg
+  AZURE_RESOURCE_GROUP_LOCATION: eastus
 
 jobs:
   build-and-deploy:
