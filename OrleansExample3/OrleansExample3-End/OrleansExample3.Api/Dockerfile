@@ -6,7 +6,7 @@ EXPOSE 30000
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["OrleansExample3.Api/OrleansExample3.Api.csproj", "Silo/"]
+COPY ["Silo/OrleansExample3.Api.csproj", "Silo/"]
 RUN dotnet restore "Silo/OrleansExample3.Api.csproj"
 COPY . .
 WORKDIR "/src/Silo"
