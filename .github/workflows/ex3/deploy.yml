@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - main
+    paths:
+    - 'OrleansExample3/**'
 
 env:
   UNIQUE_APP_NAME: ddorleansexample3
@@ -23,7 +25,7 @@ jobs:
         dotnet-version: 7.0.x
 
     - name: .NET publish shopping cart app
-      run: dotnet publish ./OrleansExample3.Api/OrleansExample3.Api.csproj --configuration Release
+      run: dotnet publish ./OrleansExample3/OrleansExample3-End/OrleansExample3.Api/OrleansExample3.Api.csproj --configuration Release
 
     - name: Login to Azure
       uses: azure/login@v1
@@ -34,7 +36,7 @@ jobs:
       run: |
         az deployment group create \
           --resource-group ${{ env.AZURE_RESOURCE_GROUP_NAME }} \
-          --template-file '.github/workflows/flex/acr.bicep' \
+          --template-file '.github/workflows/ex3/flex/acr.bicep' \
           --parameters location=${{ env.AZURE_RESOURCE_GROUP_LOCATION }}
 
     - name: Get ACR Login Server
@@ -63,13 +65,13 @@ jobs:
       with:
         push: true
         tags: ${{ env.ACR_LOGIN_SERVER }}/${{ env.SILO_IMAGE_NAME }}:${{ github.sha }}
-        file: Silo/Dockerfile
+        file: ./OrleansExample3/OrleansExample3-End/OrleansExample3.Api/Dockerfile
 
     - name: Flex ACA Bicep
       run: |
         az deployment group create \
           --resource-group ${{ env.AZURE_RESOURCE_GROUP_NAME }} \
-          --template-file '.github/workflows/flex/main.bicep' \
+          --template-file '.github/workflows/ex3/flex/main.bicep' \
           --parameters location=${{ env.AZURE_RESOURCE_GROUP_LOCATION }} \
             appName=${{ env.UNIQUE_APP_NAME }} \
             acrName=${{ env.ACR_NAME }} \
