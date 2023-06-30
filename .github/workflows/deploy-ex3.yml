@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - main
+    paths:
+    - 'OrleansExample3/**'
 
 env:
   UNIQUE_APP_NAME: ddorleansexample3
