@@ -46,9 +46,11 @@ namespace OrleansExample1.Api.Infrastructure
 
         private async Task<bool> ComplexTimeConsumingOrUnreliableBusinessLogic()
         {
-            await Task.Delay(ComplexTimeConsumingOrUnreliableBusinessLogicDelay);
+            var isRegistered = _state.State?.RegisteredOn == null;
 
-            return _state.State?.RegisteredOn == null;
+            await Task.Delay(OtherComplexTimeConsumingOrUnreliableBusinessLogicDelay);
+
+            return isRegistered;
         }
     }
 
